@@ -24,12 +24,13 @@
         // fullName: function() {
         //   return this.fitstName + ' ' + this.lastName
         // }
+        // 计算属性一般是没有set方法，只读属性
         fullName: {
           set: function() {
 
           },
           get: function() {
-            return 'abc'
+            return this.fitstName + ' ' + this.lastName
           }
         }
       },
