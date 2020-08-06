@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <div id="app">
+    <!-- 错误的做法：这里不可以使用mustache语法 -->
+    <!-- <img src="{{imgURL}}" alt=""> -->
+
+    <!-- 正确的做法：使用v-bind指令 -->
+    <img v-bind:src="imgURL" alt="">
+    <a v-bind:href="aHref">百度一下</a>
+
+    <!-- 语法糖的写法 -->
+    <img :src="imgURL" alt="">
+    <a :href="aHref">百度一下</a>
+  </div>
+
+  <script src="../../vue.js"></script>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好啊',
+        imgURL: 'https://img30.360buyimg.com/babel/s100x100_jfs/t1/80069/37/847/13255/5cf0f8e5E98518181/2f1daf302659471b.jpg!cc_100x100.webp',
+        aHref: 'http://www.baidu.com'
+      }
+    })
+  </script>
+</body>
+</html>
