@@ -1,4 +1,5 @@
 const path = require("path");
+const VueLoaderPlugin = require("vue-loader/lib/plugin");
 
 module.exports = {
   entry: "./src/main.js",
@@ -53,6 +54,12 @@ module.exports = {
             presets: ['@babel/preset-env']
           }
         }
+      },
+      {
+        test: /\.vue$/,
+        use: {
+          loader: ['vue.loader']
+        }
       }
       // {
       //   test: /\.(png|jpg|gif)$/,
@@ -65,4 +72,12 @@ module.exports = {
       // }
     ],
   },
+  plugins: [
+    new VueLoaderPlugin()
+  ],
+  resolve: {
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js'
+    }
+  }
 };
