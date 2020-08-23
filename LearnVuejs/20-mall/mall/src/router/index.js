@@ -5,6 +5,7 @@ const Home = () => import("views/home/Home.vue");
 const Category = () => import("views/category/Category.vue");
 const Cart = () => import("views/cart/Cart.vue");
 const Profile = () => import("views/profile/Profile.vue");
+const Detail = () => import("views/detail/Detail.vue");
 
 const originalReplace = VueRouter.prototype.replace
 VueRouter.prototype.replace = function replace(location) {
@@ -23,7 +24,7 @@ const routes = [
     component: Home,
   },
   {
-    path: "/Category",
+    path: "/category",
     component: Category,
   },
   {
@@ -33,6 +34,10 @@ const routes = [
   {
     path: "/profile",
     component: Profile,
+  },
+  {
+    path: "/detail/:iid",
+    component: Detail,
   },
 ];
 
