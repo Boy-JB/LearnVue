@@ -27,10 +27,9 @@ export default {
     itemClick() {
       // console.log('----------------');
       // console.log(this.$router);
-      this.$router.push('/detail/' + this.goodsItem.iid)
+      this.$router.push("/detail/" + this.goodsItem.iid);
       // this.$router.push('/detail/' + this.goodsItem.iid)
-      
-    }
+    },
   },
 };
 </script>
