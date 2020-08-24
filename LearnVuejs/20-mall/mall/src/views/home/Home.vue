@@ -43,10 +43,11 @@ import scroll from "components/common/scroll/scroll";
 import BackTop from "components/content/backTop/BackTop";
 
 import { getHomeMultidata, getHomeGoods } from "network/home";
-import { debounce } from "common/utils";
+import { itemListenerMixin } from "common/mixin";
 
 export default {
   name: "Home",
+  mixins: [itemListenerMixin],
   data() {
     return {
       banners: [],
@@ -84,13 +85,7 @@ export default {
     // 3.赋值
     this.tabOffsetTop = this.$refs.tabControl;
   },
-  mounted() {
-    // 1.图片加载完成的事件监听
-    const refresh = debounce(this.$refs.scroll.refresh, 200);
-    this.$bus.$on("itemImageLoad", () => {
-      refresh();
-    });
-  },
+  mounted() {},
   computed: {
     showGoods() {
       return this.goods[this.currentType].list;
@@ -99,10 +94,14 @@ export default {
   activated() {
     this.$refs.scroll.scrollTo(0, this.saveY, 0);
 
-    this.$refs.scroll.refresh()
+    this.$refs.scroll.refresh();
   },
   deactivated() {
+    // 1.保存Y值
     this.saveY = this.$refs.scroll.getSrollY();
+
+    // 2.取消全局事件的监听
+    this.$bus.$off("itemImageLoad", this.itemImgListener);
   },
   methods: {
     /*
