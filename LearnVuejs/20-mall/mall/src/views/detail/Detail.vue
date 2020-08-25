@@ -1,7 +1,7 @@
 <template>
-  <div id="detail">
+  <div id="detail" >
     <!-- 导航 -->
-    <detail-nav-bar class="detail-nav" />
+    <detail-nav-bar class="detail-nav" @titleClick="titleClick" />
     <scroll class="content" ref="scroll">
       <detail-swiper :top-images="topImages" />
       <detail-base-info :goods="goods" />
@@ -61,6 +61,7 @@ export default {
       paramInfo: {},
       commentInfo: {},
       recommends: [],
+      themeTopYs: [0, 1000, 2000]
     };
   },
   mounted() {
@@ -70,6 +71,10 @@ export default {
     imageLoad() {
       this.$refs.scroll.refresh();
     },
+    titleClick(index) {
+      // console.log(index);
+      this.$refs.scroll.scrollTo(0, -this.themeTopYs[index], 100)
+    }
   },
   created() {
     // 1.保存传入的iid
