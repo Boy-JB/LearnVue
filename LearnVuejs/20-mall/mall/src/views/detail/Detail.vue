@@ -11,7 +11,7 @@
       <detail-comment-info ref="comment" :comment-info="commentInfo" />
       <goods-list ref="recommend" :goods="recommends" />
 
-      <div>{{$store.state.cartList.length}}</div>
+      
     </scroll>
     <detail-bottom-bar @addCart="addToCart" />
     <back-top @click.native="backClick" v-show="isShowBackTop" />
@@ -87,7 +87,8 @@ export default {
 
       // 2.将商品添加到购物车
       // this.$store.cartList.push(product)
-      this.$store.commit('addCart', product)
+      // this.$store.commit('addCart', product)
+      this.$store.dispatch('addCart', product)
 
     },
     imageLoad() {
