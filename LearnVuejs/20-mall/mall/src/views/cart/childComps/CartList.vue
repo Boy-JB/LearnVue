@@ -1,7 +1,7 @@
 <template>
+
   <div class="cart-list">
-    <scroll class="content">
-      <!-- <li v-for="item in cartList">{{item}}</li> -->
+    <scroll class="content" ref="scroll">
       <cart-list-item v-for="(item, index) in cartList" :key="index" :product="item" />
     </scroll>
   </div>
@@ -11,16 +11,19 @@
 import { mapGetters } from "vuex";
 
 import Scroll from "components/common/scroll/scroll";
-import CartListItem from "./CartListItem"
+import CartListItem from "./CartListItem";
 
 export default {
   name: "CartList",
   components: {
     Scroll,
-    CartListItem
+    CartListItem,
   },
   computed: {
     ...mapGetters(["cartList"]),
+  },
+  activated() {
+    this.$refs.scroll.refresh();
   },
 };
 </script>
